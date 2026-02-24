@@ -121,12 +121,25 @@
               </div>
             </div>
 
-            <!-- Right VU Meter -->
-            <div class="vu-meter-container">
-              <div class="vu-meter" id="vu-right">
-                <div class="vu-label">R</div>
-                <div class="vu-scale"></div>
-                <div class="vu-needle"></div>
+            <!-- Knobs for Bass/Treble -->
+            <div class="knob-meters-container">
+              <div class="knob-wrap">
+                <span class="beast-label">BASS</span>
+                <div class="knob-ui">
+                  <input type="range" id="bass-knob" min="-20" max="20" value="0" class="knob-input">
+                  <div class="knob-dial" id="bass-dial">
+                    <div class="knob-marker"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="knob-wrap">
+                <span class="beast-label">TREBLE</span>
+                <div class="knob-ui">
+                  <input type="range" id="treble-knob" min="-20" max="20" value="0" class="knob-input">
+                  <div class="knob-dial" id="treble-dial">
+                    <div class="knob-marker"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -144,18 +157,9 @@
           </div>
 
           <div class="beast-controls-row">
-            <!-- Sliders -->
-            <div class="beast-sliders">
-              <div class="beast-slider-wrap">
-                <span class="beast-label">BASS</span>
-                <input type="range" id="bass-slider" min="-20" max="20" value="0" class="beast-range"
-                  aria-label="Bass Control">
-              </div>
-              <div class="beast-slider-wrap">
-                <span class="beast-label">TREBLE</span>
-                <input type="range" id="treble-slider" min="-20" max="20" value="0" class="beast-range"
-                  aria-label="Treble Control">
-              </div>
+            <!-- Internal Playlist -->
+            <div class="beast-mini-playlist" id="mini-playlist" role="list">
+              <!-- Filled via JS -->
             </div>
 
             <!-- Transport Buttons grouped for alignment -->
@@ -191,7 +195,6 @@
           </div>
         </div>
       </div>
-      <div class="player-playlist" id="playlist" aria-label="Playlist" role="list"></div>
     </div>
   </section>
 

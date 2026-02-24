@@ -37,15 +37,16 @@ export function initAudioPlayer() {
     const elProgress = document.getElementById('player-progress');
     const elTimeCur = document.getElementById('time-cur');
     const elTimeTotal = document.getElementById('time-total');
-    const elPlaylist = document.getElementById('playlist');
+    const elPlaylist = document.getElementById('mini-playlist');
     const reelL = document.getElementById('reel-left');
     const reelR = document.getElementById('reel-right');
     const needleL = document.querySelector('#vu-left .vu-needle');
-    const needleR = document.querySelector('#vu-right .vu-needle');
     const shatteredBg = document.getElementById('shattered-bg');
 
-    const elBass = document.getElementById('bass-slider');
-    const elTreble = document.getElementById('treble-slider');
+    const elBass = document.getElementById('bass-knob');
+    const elTreble = document.getElementById('treble-knob');
+    const dialBass = document.getElementById('bass-dial');
+    const dialTreble = document.getElementById('treble-dial');
 
     if (!elBtnPlay) return;
 
@@ -53,12 +54,12 @@ export function initAudioPlayer() {
     TRACKS.forEach((track, idx) => {
         if (!elPlaylist) return;
         const item = document.createElement('div');
-        item.className = 'playlist-item' + (idx === 0 ? ' active' : '');
+        item.className = 'mini-playlist-item' + (idx === 0 ? ' active' : '');
         item.setAttribute('role', 'listitem');
         item.tabIndex = 0;
         item.innerHTML = `
-            <span class="playlist-num">${(idx + 1).toString().padStart(2, '0')}</span>
-            <span>${track.title}</span>
+            <span class="playlist-num">${(idx + 1).toString().padStart(2, '0')}.</span>
+            <span>${track.title.toUpperCase()}</span>
         `;
         item.addEventListener('click', () => loadTrack(idx, true));
         elPlaylist.appendChild(item);
@@ -71,8 +72,9 @@ export function initAudioPlayer() {
         if (elTrackName) elTrackName.textContent = track.title.toUpperCase();
         if (elTrackMeta) elTrackMeta.textContent = track.meta;
 
-        document.querySelectorAll('.playlist-item').forEach((el, i) => {
+        document.querySelectorAll('.mini-playlist-item').forEach((el, i) => {
             el.classList.toggle('active', i === idx);
+            if (i === idx) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
 
         if (autoPlay) {
@@ -125,6 +127,17 @@ export function initAudioPlayer() {
         }, interval);
     }
 
+    function updateKnobRotation(input, dial) {
+        if (!input || !dial) return;
+        const min = parseFloat(input.min);
+        const max = parseFloat(input.max);
+        const val = parseFloat(input.value);
+        const pct = (val - min) / (max - min);
+        // Rotate from -135deg to 135deg
+        const rot = pct * 270 - 135;
+        dial.style.transform = `rotate(${rot}deg)`;
+    }
+
     function startPlayback() {
         if (!audioContext) {
             audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -152,13 +165,19 @@ export function initAudioPlayer() {
 
             dataArray = new Uint8Array(analyzer.frequencyBinCount);
 
-            // Setup real-time updates for sliders
+            // Setup real-time updates for knobs
             elBass?.addEventListener('input', (e) => {
                 if (bassFilter) bassFilter.gain.value = parseFloat(e.target.value);
+                updateKnobRotation(elBass, dialBass);
             });
             elTreble?.addEventListener('input', (e) => {
                 if (trebleFilter) trebleFilter.gain.value = parseFloat(e.target.value);
+                updateKnobRotation(elTreble, dialTreble);
             });
+
+            // Initial rotation
+            updateKnobRotation(elBass, dialBass);
+            updateKnobRotation(elTreble, dialTreble);
 
             startVisualizer();
         }
@@ -202,7 +221,6 @@ export function initAudioPlayer() {
                 const avg = sum / 20;
                 const rot = (avg / 255) * 90 - 45;
                 if (needleL) needleL.style.transform = `translateX(-50%) rotate(${rot}deg)`;
-                if (needleR) needleR.style.transform = `translateX(-50%) rotate(${rot * 1.1 + (Math.random() * 2 - 1)}deg)`;
 
                 if (shatteredBg) {
                     const intensity = avg / 255;
@@ -254,3 +272,4 @@ export function initAudioPlayer() {
 
     loadTrack(0);
 }
+

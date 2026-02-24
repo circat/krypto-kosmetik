@@ -935,11 +935,7 @@ body.theme-red .logo-text {
   background: #111;
 }
 
-.square-stop {
-  width: 16px;
-  height: 16px;
-  background: currentColor;
-}
+
 
 /* Playlist remains as it was but fitted for Beast */
 .player-playlist {

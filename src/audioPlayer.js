@@ -24,6 +24,7 @@ export function initAudioPlayer() {
     let currentTrack = 0;
     let isPlaying = false;
     let audioContext, analyzer, source, dataArray;
+    let bassFilter, trebleFilter;
     let pitchInterval;
 
     const elTrackName = document.getElementById('track-name');
@@ -42,6 +43,9 @@ export function initAudioPlayer() {
     const needleL = document.querySelector('#vu-left .vu-needle');
     const needleR = document.querySelector('#vu-right .vu-needle');
     const shatteredBg = document.getElementById('shattered-bg');
+
+    const elBass = document.getElementById('bass-slider');
+    const elTreble = document.getElementById('treble-slider');
 
     if (!elBtnPlay) return;
 
@@ -127,9 +131,35 @@ export function initAudioPlayer() {
             analyzer = audioContext.createAnalyser();
             analyzer.fftSize = 256;
             source = audioContext.createMediaElementSource(audio);
-            source.connect(analyzer);
+
+            // BASS FILTER
+            bassFilter = audioContext.createBiquadFilter();
+            bassFilter.type = 'lowshelf';
+            bassFilter.frequency.value = 250;
+            bassFilter.gain.value = elBass ? parseFloat(elBass.value) : 0;
+
+            // TREBLE FILTER
+            trebleFilter = audioContext.createBiquadFilter();
+            trebleFilter.type = 'highshelf';
+            trebleFilter.frequency.value = 3000;
+            trebleFilter.gain.value = elTreble ? parseFloat(elTreble.value) : 0;
+
+            // CONNECT NODES: source -> bass -> treble -> analyzer -> destination
+            source.connect(bassFilter);
+            bassFilter.connect(trebleFilter);
+            trebleFilter.connect(analyzer);
             analyzer.connect(audioContext.destination);
+
             dataArray = new Uint8Array(analyzer.frequencyBinCount);
+
+            // Setup real-time updates for sliders
+            elBass?.addEventListener('input', (e) => {
+                if (bassFilter) bassFilter.gain.value = parseFloat(e.target.value);
+            });
+            elTreble?.addEventListener('input', (e) => {
+                if (trebleFilter) trebleFilter.gain.value = parseFloat(e.target.value);
+            });
+
             startVisualizer();
         }
         if (audioContext.state === 'suspended') audioContext.resume();

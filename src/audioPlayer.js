@@ -5,11 +5,11 @@
  */
 
 const TRACKS = [
-    { file: '/music/FINAL_DISCOMOPED.mp3', title: 'Discomoped', meta: 'Krypto Kosmetik' },
-    { file: '/music/FINAL_HERZAUFRISS.mp3', title: 'Herzaufriss', meta: 'Krypto Kosmetik' },
-    { file: '/music/FINAL_JUNAMELINA.mp3', title: 'Juna Melina', meta: 'Krypto Kosmetik' },
-    { file: '/music/FINAL_LUFT.mp3', title: 'Luft', meta: 'Krypto Kosmetik' },
-    { file: '/music/FINAL_NIEWIEDER.mp3', title: 'Nie Wieder', meta: 'Krypto Kosmetik' },
+    { file: 'music/FINAL_DISCOMOPED.mp3', title: 'Discomoped', meta: 'Krypto Kosmetik' },
+    { file: 'music/FINAL_HERZAUFRISS.mp3', title: 'Herzaufriss', meta: 'Krypto Kosmetik' },
+    { file: 'music/FINAL_JUNAMELINA.mp3', title: 'Juna Melina', meta: 'Krypto Kosmetik' },
+    { file: 'music/FINAL_LUFT.mp3', title: 'Luft', meta: 'Krypto Kosmetik' },
+    { file: 'music/FINAL_NIEWIEDER.mp3', title: 'Nie Wieder', meta: 'Krypto Kosmetik' },
 ];
 
 export function initAudioPlayer() {

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/krypto-kosmetik/',
+  base: './',
   publicDir: 'public',
   server: {
     port: 3000

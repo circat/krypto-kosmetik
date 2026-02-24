@@ -408,7 +408,7 @@ body.theme-red .logo-text {
 .shattered-bg {
   position: absolute;
   inset: 0;
-  background-image: url('/pics/shattered_disco.jpg');
+  background-image: url('pics/shattered_disco.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0.2;

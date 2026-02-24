@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Impressum – Krypto Kosmetik</title>
+    <meta name="robots" content="noindex" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;700&family=Playfair+Display:wght@700;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <style>
+        body {
+            background: var(--black);
+            color: var(--white);
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .impressum-header {
+            margin-bottom: 4rem;
+        }
+
+        .impressum-header h1 {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            color: var(--pink);
+            letter-spacing: 0.05em;
+        }
+
+        .impressum-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .impressum-section h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--chrome);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .impressum-section p,
+        .impressum-section address {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: var(--chrome-dark);
+            font-style: normal;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 4rem;
+            padding: 1rem 2rem;
+            border: 1px solid var(--pink);
+            color: var(--pink);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .back-home:hover {
+            background: var(--pink);
+            color: var(--black);
+            box-shadow: 0 0 20px var(--pink);
+        }
+    </style>
+</head>
+
+<body class="theme-default">
+    <div class="impressum-header">
+        <h1>Impressum</h1>
+        <div class="section-label">/ Rechtliches</div>
+    </div>
+
+    <div class="impressum-section">
+        <h2>Angaben gemäß § 5 DDG</h2>
+        <address>
+            [Dein Vor- und Nachname]<br><br>
+            [Deine Straße und Hausnummer]<br>
+            [PLZ und Ort]
+        </address>
+    </div>
+
+    <div class="impressum-section">
+        <h2>Kontakt</h2>
+        <p>
+            Telefon: [Deine Telefonnummer]<br>
+            E-Mail: [Deine E-Mail-Adresse]
+        </p>
+    </div>
+
+    <div class="impressum-section">
+        <h2>Redaktionell verantwortlich</h2>
+        <address>
+            [Dein Vor- und Nachname]<br><br>
+            [Deine Straße und Hausnummer]<br>
+            [PLZ und Ort]
+        </address>
+    </div>
+
+    <div class="impressum-section">
+        <h2>EU-Streitschlichtung</h2>
+        <p>
+            Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+            <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener"
+                style="color: var(--cyan);">https://ec.europa.eu/consumers/odr/</a>.<br>
+            Unsere E-Mail-Adresse finden Sie oben im Impressum.
+        </p>
+    </div>
+
+    <div class="impressum-section">
+        <h2>Verbraucherstreitbeilegung/Universalschlichtungsstelle</h2>
+        <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+            teilzunehmen.</p>
+    </div>
+
+    <a href="/" class="back-home">Zurück zur Hauptseite</a>
+</body>
+
+</html>
